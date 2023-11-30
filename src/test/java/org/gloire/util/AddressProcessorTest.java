@@ -61,6 +61,34 @@ public class AddressProcessorTest {
     }
 
     /**
+     * Unit test for pretty printing all addresses using the {@link AddressProcessor} class.
+     * It loads addresses, checks their validity, and verifies the pretty printed output for each address.
+     *
+     * @throws IOException If an error occurs while loading addresses.
+     */
+    @Test
+    public void prettyPrintAllAddresses() {
+        try {
+            List<Address> addresses = loadAddresses(filePath);
+            assertNotNull(addresses);
+            assertEquals(3, addresses.size());
+
+            for (Address address : addresses) {
+                if (!isValidAddress(address)) {
+                    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> prettyPrintAddress(address));
+                    assertEquals(getValidationErrorMessage(address), exception.getMessage());
+                } else {
+                    String prettyPrinted = prettyPrintAddress(address);
+                    assertEquals("Type: Address 1 - Line 2 - City 1 - Eastern Cape - 1234 - South Africa", prettyPrinted);
+                }
+            }
+
+        } catch (IOException e) {
+            fail("IOException occurred while loading addresses");
+        }
+    }
+
+    /**
      * Unit test for printing addresses of a specific type using the {@link AddressProcessor} class.
      * It loads addresses and prints addresses of the specified type for manual verification.
      *

@@ -70,6 +70,17 @@ public class AddressProcessor {
     }
 
     /**
+     * Pretty prints all addresses to the logger.
+     *
+     * @param addresses The list of addresses to be pretty printed.
+     */
+    public static void prettyPrintAllAddresses(List<Address> addresses) {
+        for (Address address : addresses) {
+            logger.info(prettyPrintAddress(address));
+        }
+    }
+
+    /**
      * Checks if an address is valid based on certain criteria.
      *
      * @param address The address to be validated.
