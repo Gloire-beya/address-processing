@@ -54,6 +54,21 @@ public class AddressProcessor {
                 address.getPostalCode(),
                 address.getCountry().getName());
     }
+
+    /**
+     * Prints addresses of a specific type to the logger.
+     *
+     * @param addresses The list of addresses to filter and print.
+     * @param type      The type of addresses to print.
+     */
+    public static void printAddressesByType(List<Address> addresses, String type) {
+        for (Address address : addresses) {
+            if (address.getType() != null && address.getType().getName().equals(type)) {
+                logger.info(prettyPrintAddress(address));
+            }
+        }
+    }
+
     /**
      * Checks if an address is valid based on certain criteria.
      *

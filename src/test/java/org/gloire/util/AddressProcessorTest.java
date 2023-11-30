@@ -60,4 +60,21 @@ public class AddressProcessorTest {
         }
     }
 
+    /**
+     * Unit test for printing addresses of a specific type using the {@link AddressProcessor} class.
+     * It loads addresses and prints addresses of the specified type for manual verification.
+     *
+     * @throws IOException If an error occurs while loading addresses.
+     */
+    @Test
+    public void printAddressesByType() {
+        String type = "Physical Address";
+        try {
+            List<Address> addresses = AddressProcessor.loadAddresses(filePath);
+            AddressProcessor.printAddressesByType(addresses, type);  // For manual verification
+        } catch (IOException e) {
+            fail("IOException occurred while loading addresses");
+        }
+    }
+
 }
