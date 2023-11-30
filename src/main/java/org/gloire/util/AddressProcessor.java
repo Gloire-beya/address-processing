@@ -98,6 +98,22 @@ public class AddressProcessor {
     }
 
     /**
+     * Checks if an address is valid based on certain criteria.
+     *
+     * @param addresses The address to be validated.
+     * Log in the console the ID of an invalid address, but pretty print a valid address
+     */
+    public static void validateAddresses(List<Address> addresses) {
+        for (Address address : addresses) {
+            if (isValidAddress(address)) {
+                logger.info("Address with ID {} is valid", address.getId());
+            } else {
+                logger.info("Address with ID {} is invalid: {}", address.getId(), getValidationErrorMessage(address));
+            }
+        }
+    }
+
+    /**
      * Gets a validation error message for an invalid address.
      *
      * @param address The address for which to generate the error message.
